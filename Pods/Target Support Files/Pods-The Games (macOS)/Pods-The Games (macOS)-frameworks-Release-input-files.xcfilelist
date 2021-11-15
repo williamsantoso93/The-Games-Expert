@@ -1,0 +1,4 @@
+${PODS_ROOT}/Target Support Files/Pods-The Games (macOS)/Pods-The Games (macOS)-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Alamofire-macOS/Alamofire.framework
+${BUILT_PRODUCTS_DIR}/SDWebImage-macOS/SDWebImage.framework
+${BUILT_PRODUCTS_DIR}/SDWebImageSwiftUI-macOS/SDWebImageSwiftUI.framework
