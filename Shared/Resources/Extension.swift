@@ -16,8 +16,7 @@ extension Data {
 extension Date {
     func dateToStringLong() -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .long
-        
+        dateFormatter.dateStyle = .long        
         return dateFormatter.string(from: self)
     }
 }

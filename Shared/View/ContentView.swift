@@ -10,6 +10,7 @@ import SwiftUIX
 
 struct ContentView: View {
     @StateObject var viewModel = HomeViewModel()
+    
     var body: some View {
         NavigationView {
             Group {

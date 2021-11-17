@@ -22,6 +22,7 @@ struct FavoriteScreen: View {
             $0.name.localizedStandardContains(searchText.lowercased())
         }
     }
+    
     var body: some View {
         Group {
             if !filterGamesData.isEmpty {

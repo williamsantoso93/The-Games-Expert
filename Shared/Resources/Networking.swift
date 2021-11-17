@@ -7,6 +7,7 @@
 
 import Foundation
 import Alamofire
+import Combine
 
 enum NetworkError: Error {
     case badUrl
@@ -23,34 +24,24 @@ class Networking {
     let baseAPI = "https://api.rawg.io/api"
     let apiKey = "e07d0723795c4dfc8130cbcaf6083be6"
     
-    func getData<T: Codable> (from urlString: String, queryItems: [URLQueryItem]? = nil, completion: @escaping ((Result<T, NetworkError>), URLResponse?) -> Void) {
+    func getData<T: Codable> (from urlString: String, queryItems: [URLQueryItem]? = nil) -> AnyPublisher<T, NetworkError> {
         var components = URLComponents(string: urlString)!
         components.queryItems = []
         if let queryItems = queryItems {
             components.queryItems = queryItems
         }
-        components.queryItems?.append(URLQueryItem(name: "key", value: apiKey))
-        guard let url = components.url else {
-            return completion(.failure(.badUrl), nil)
-        }
-//        var request = URLRequest(url: url)
-//        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-//        URLSession.shared.dataTask(with: request) { (data, response, error) in
-//            guard let data = data, error == nil else {
-//                return completion(.failure(.noData), response)
-//            }
-//            guard let decoded = try? JSONDecoder().decode(T.self, from: data) else {
-//                return completion(.failure(.errorMessage(data.jsonToString())), response)
-//            }
-//            completion(.success(decoded), response)
-//        }.resume()
-        AF.request(url).validate().responseDecodable(of: T.self) { response in
-            switch response.result {
-                case .success(let value):
-                    completion(.success(value), response.response)
-                case .failure:
-                    completion(.failure(.decodingError), nil)
+        components.queryItems?.append(URLQueryItem(name: "key", value: apiKey))        
+        return Future<T, NetworkError> { completion in
+            if let url = components.url {
+                AF.request(url).validate().responseDecodable(of: T.self) { response in
+                    switch response.result {
+                    case .success(let value):
+                        completion(.success(value))
+                    case .failure:
+                        completion(.failure(.decodingError))
+                    }
+                }
             }
-        }
+        }.eraseToAnyPublisher()
     }
 }

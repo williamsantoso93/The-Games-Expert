@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 class HomeViewModel: ObservableObject {
     @Published var dataResult: DataResult?
@@ -14,26 +15,34 @@ class HomeViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var message = "No game data"
     
+    private var cancellables: Set<AnyCancellable> = []
+    
     init() {
         loadNewList()
     }
     
     func loadNewList() {
         gamesData.removeAll()
-        getListGames { (result: Result<DataResult, Error>) in
-            switch result {
-            case .success(let data) :
+        getListGames()
+            .receive(on: RunLoop.main)
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    self.message = "Error please try again"
+                    print(error.localizedDescription)
+                }
+            }, receiveValue: { data in
                 self.dataResult = data
                 if let results = data.results {
-                    self.gamesData = results
+                    self.gamesData.append(contentsOf: results)
                     if self.gamesData.isEmpty {
                         self.message = "no game data"
                     }
                 }
-            case .failure(_) :
-                self.message = "Error please try again"
-            }
-        }
+            })
+            .store(in: &cancellables)
     }
     
     func clearSearch() {
@@ -47,7 +56,7 @@ class HomeViewModel: ObservableObject {
         }
     }
     
-    func getListGames(nextPage: String? = nil, completion: @escaping (Result<DataResult, Error>) -> Void) {
+    func getListGames(nextPage: String? = nil) -> AnyPublisher<DataResult, NetworkError> {
         var queryItems: [URLQueryItem]? = []
         var urlString = ""
         if let nextPage = nextPage {
@@ -59,18 +68,22 @@ class HomeViewModel: ObservableObject {
             }
         }
         isLoading = true
-        guard !urlString.isEmpty else { return }
-        Networking.shared.getData(from: urlString, queryItems: queryItems) { (result: Result<DataResult, NetworkError>, _) in
-            DispatchQueue.main.async {
-                self.isLoading = false
-                switch result {
-                case .success(let data) :
+        return Future<DataResult, NetworkError> { completion in
+            Networking.shared.getData(from: urlString, queryItems: queryItems)
+                .receive(on: RunLoop.main)
+                .sink(receiveCompletion: { completion in
+                    switch completion {
+                    case .finished:
+                        self.isLoading = false
+                    case .failure(let error):
+                        self.message = "Error please try again"
+                        print(error.localizedDescription)
+                    }
+                }, receiveValue: { data in
                     completion(.success(data))
-                case .failure(let error) :
-                    completion(.failure(error))
-                }
-            }
-        }
+                })
+                .store(in: &self.cancellables)
+        }.eraseToAnyPublisher()
     }
     
     func loadMoreData(currentGamesData: GameData) {
@@ -78,9 +91,17 @@ class HomeViewModel: ObservableObject {
         guard !gamesData.isEmpty else { return }
         let secondLastData = gamesData[gamesData.count - 2]
         if currentGamesData.gameID == secondLastData.gameID {
-            getListGames(nextPage: next) { (result: Result<DataResult, Error>) in
-                switch result {
-                case .success(let data) :
+            getListGames(nextPage: next)
+                .receive(on: RunLoop.main)
+                .sink(receiveCompletion: { completion in
+                    switch completion {
+                    case .finished:
+                        break
+                    case .failure(let error):
+                        self.message = "Error please try again"
+                        print(error.localizedDescription)
+                    }
+                }, receiveValue: { data in
                     self.dataResult = data
                     if let results = data.results {
                         self.gamesData.append(contentsOf: results)
@@ -88,10 +109,8 @@ class HomeViewModel: ObservableObject {
                             self.message = "no game data"
                         }
                     }
-                case .failure(_) :
-                    self.message = "Error please try again"
-                }
-            }
+                })
+                .store(in: &cancellables)
         }
     }
 }

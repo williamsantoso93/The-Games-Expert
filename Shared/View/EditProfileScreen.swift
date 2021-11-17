@@ -19,6 +19,7 @@ struct EditProfileScreen: View {
     let userDefault = UserDefaults.standard
     @State var isShowImagePicker = false
     @State var isShowAlertRequest = false
+    
     var body: some View {
         NavigationView {
             VStack(spacing: 16.0) {

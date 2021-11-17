@@ -13,6 +13,7 @@ struct CardView: View {
     var genres: String {
         joinedItems(game.genres)
     }
+    
     var body: some View {
         ZStack {
             WebImage(url: URL(string: game.backgroundImage ?? ""))

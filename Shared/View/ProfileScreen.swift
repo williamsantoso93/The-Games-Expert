@@ -15,6 +15,7 @@ struct ProfileScreen: View {
     @AppStorage("linkedin") var linkedin: String = "https://www.linkedin.com/in/williamsantoso93/"
     @AppStorage("instagram") var instagram: String = "https://www.instagram.com/william.santoso93/"
     @AppStorage("image") var imageData: Data?
+    
     var body: some View {
         VStack(spacing: 40) {
             HStack {
