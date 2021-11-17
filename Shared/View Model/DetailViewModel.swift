@@ -7,27 +7,50 @@
 
 import SwiftUI
 import CoreData
+import Combine
 
 class DetailViewModel: ObservableObject {
     @Published var game: DetailGame?
     @Published var gameID: Int?
     @Published var isLoading = false
     @Published var message = "Error please try again"
+    private var cancellables: Set<AnyCancellable> = []
     func getGameDetail() {
         guard let gameID = gameID else { return }
         isLoading = true
         let urlString = Networking.shared.baseAPI + "/games/\(gameID)"
-        Networking.shared.getData(from: urlString) { (result: Result<DetailGame, NetworkError>, _) in
-            DispatchQueue.main.async {
-                self.isLoading = false
-                switch result {
-                case .success(let data) :
-                    self.game = data
-                case .failure(_) :
+        getDetail(urlString)
+            .receive(on: RunLoop.main)
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    self.isLoading = false
+                case .failure(let error):
                     self.message = "Error please try again"
+                    print(error.localizedDescription)
                 }
-            }
-        }
+            }, receiveValue: { data in
+                self.game = data
+            })
+            .store(in: &cancellables)
+    }
+    func getDetail(_ urlString: String) -> AnyPublisher<DetailGame, NetworkError> {
+        return Future<DetailGame, NetworkError> { completion in
+            Networking.shared.getData(from: urlString)
+                .receive(on: RunLoop.main)
+                .sink(receiveCompletion: { completion in
+                    switch completion {
+                    case .finished:
+                        self.isLoading = false
+                    case .failure(let error):
+                        self.message = "Error please try again"
+                        print(error.localizedDescription)
+                    }
+                }, receiveValue: { data in
+                    completion(.success(data))
+                })
+                .store(in: &self.cancellables)
+        }.eraseToAnyPublisher()
     }
     func addFavorite(_ moc: NSManagedObjectContext) {
         if let game = game {

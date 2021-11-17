@@ -15,13 +15,14 @@ class HomeViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var message = "No game data"
     
+    private var cancellables: Set<AnyCancellable> = []
+    
     init() {
         loadNewList()
     }
     
     func loadNewList() {
         gamesData.removeAll()
-        
         getListGames()
             .receive(on: RunLoop.main)
             .sink(receiveCompletion: { completion in
@@ -42,21 +43,6 @@ class HomeViewModel: ObservableObject {
                 }
             })
             .store(in: &cancellables)
-
-//        getListGames { (result: Result<DataResult, Error>) in
-//            switch result {
-//            case .success(let data) :
-//                self.dataResult = data
-//                if let results = data.results {
-//                    self.gamesData = results
-//                    if self.gamesData.isEmpty {
-//                        self.message = "no game data"
-//                    }
-//                }
-//            case .failure(_) :
-//                self.message = "Error please try again"
-//            }
-//        }
     }
     
     func clearSearch() {
@@ -83,21 +69,22 @@ class HomeViewModel: ObservableObject {
         }
         isLoading = true
         return Future<DataResult, NetworkError> { completion in
-            Networking.shared.getData(from: urlString, queryItems: queryItems) { (result: Result<DataResult, NetworkError>, _) in
-                DispatchQueue.main.async {
-                    self.isLoading = false
-                    switch result {
-                    case .success(let data) :
-                        completion(.success(data))
-                    case .failure(let error) :
-                        completion(.failure(error))
+            Networking.shared.getData(from: urlString, queryItems: queryItems)
+                .receive(on: RunLoop.main)
+                .sink(receiveCompletion: { completion in
+                    switch completion {
+                    case .finished:
+                        self.isLoading = false
+                    case .failure(let error):
+                        self.message = "Error please try again"
+                        print(error.localizedDescription)
                     }
-                }
-            }
+                }, receiveValue: { data in
+                    completion(.success(data))
+                })
+                .store(in: &self.cancellables)
         }.eraseToAnyPublisher()
     }
-    
-    private var cancellables: Set<AnyCancellable> = []
     
     func loadMoreData(currentGamesData: GameData) {
         guard let next = dataResult?.next else { return }

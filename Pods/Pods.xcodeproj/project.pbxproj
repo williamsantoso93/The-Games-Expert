@@ -15,6 +15,7 @@
 			dependencies = (
 			);
 			name = "SwiftLint-iOS";
+			productName = "SwiftLint-iOS";
 		};
 		9F0E6E0C8BF75091EADD98FA13B1A847 /* SwiftLint-macOS */ = {
 			isa = PBXAggregateTarget;
@@ -24,6 +25,7 @@
 			dependencies = (
 			);
 			name = "SwiftLint-macOS";
+			productName = "SwiftLint-macOS";
 		};
 /* End PBXAggregateTarget section */
 
@@ -524,12 +526,12 @@
 		0C6966DA62297CBC6B2A2AEC06AB846B /* SDImageCachesManagerOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDImageCachesManagerOperation.h; path = SDWebImage/Private/SDImageCachesManagerOperation.h; sourceTree = "<group>"; };
 		0C8A1BCDA5B1954EF8A6A6B355F5C01D /* SDWebImage-iOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SDWebImage-iOS-umbrella.h"; sourceTree = "<group>"; };
 		0CAEA6F7D453BE51E0B85723B4E01772 /* SDAnimatedImageView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDAnimatedImageView.m; path = SDWebImage/Core/SDAnimatedImageView.m; sourceTree = "<group>"; };
-		0CCE9CB82B4F89C8E07ADCACFD3DB134 /* Alamofire-macOS */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Alamofire-macOS"; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0CCE9CB82B4F89C8E07ADCACFD3DB134 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		11899A84EC7B176CAE2F5FD21541615C /* UIButton+WebCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIButton+WebCache.m"; path = "SDWebImage/Core/UIButton+WebCache.m"; sourceTree = "<group>"; };
 		11ED84DF460722165E7723870F7701B0 /* Pods-The Games (iOS)-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-The Games (iOS)-acknowledgements.plist"; sourceTree = "<group>"; };
 		128DF7F8DCDCFE1AE1A814969B0E5799 /* ImagePlayer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImagePlayer.swift; path = SDWebImageSwiftUI/Classes/ImagePlayer.swift; sourceTree = "<group>"; };
 		137DE6B97D9F7EF51330DE5F36011AAA /* SDImageFrame.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDImageFrame.m; path = SDWebImage/Core/SDImageFrame.m; sourceTree = "<group>"; };
-		15463535A1871508D2DC3BB660831025 /* SDWebImageSwiftUI-macOS */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "SDWebImageSwiftUI-macOS"; path = SDWebImageSwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		15463535A1871508D2DC3BB660831025 /* SDWebImageSwiftUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDWebImageSwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		15AAE415F9ACB61C6C7BBF00DBDA20E6 /* Alamofire-macOS-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Alamofire-macOS-prefix.pch"; path = "../Alamofire-macOS/Alamofire-macOS-prefix.pch"; sourceTree = "<group>"; };
 		1774B5E46B7DBD0E2D2DF60D5F9922DF /* SDImageLoadersManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDImageLoadersManager.h; path = SDWebImage/Core/SDImageLoadersManager.h; sourceTree = "<group>"; };
 		1847EE0448BA2354F0F1EDC0C772623D /* SDWebImageDefine.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageDefine.m; path = SDWebImage/Core/SDWebImageDefine.m; sourceTree = "<group>"; };
@@ -606,7 +608,7 @@
 		575FEDFB6B1B32D62B140DCB70A1A394 /* Indicator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Indicator.swift; path = SDWebImageSwiftUI/Classes/Indicator/Indicator.swift; sourceTree = "<group>"; };
 		576267722E4AFDAC82BB4FAE25F41DFB /* Pods-The Games (iOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-The Games (iOS).debug.xcconfig"; sourceTree = "<group>"; };
 		5801CB3017F283E7E1BCAF534C77CEF3 /* SDDisplayLink.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDDisplayLink.m; path = SDWebImage/Private/SDDisplayLink.m; sourceTree = "<group>"; };
-		5808AAA29FCA28E8BA1B8CBF14DA8A25 /* Pods-The Games (macOS) */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-The Games (macOS)"; path = Pods_The_Games__macOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5808AAA29FCA28E8BA1B8CBF14DA8A25 /* Pods_The_Games__macOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_The_Games__macOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		592D4DAEEF274C68DA4AD8E108DBD208 /* SDWebImageCacheSerializer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageCacheSerializer.h; path = SDWebImage/Core/SDWebImageCacheSerializer.h; sourceTree = "<group>"; };
 		5A4B47B849957D81BB65E44424428B62 /* SDAnimatedImage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDAnimatedImage.h; path = SDWebImage/Core/SDAnimatedImage.h; sourceTree = "<group>"; };
 		5BEC0FDB9526258AAD421878893BEE02 /* SDWebImageSwiftUI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SDWebImageSwiftUI.swift; path = SDWebImageSwiftUI/Classes/SDWebImageSwiftUI.swift; sourceTree = "<group>"; };
@@ -630,7 +632,7 @@
 		688B4D47F560ECCB0A8A6AD9383DAA33 /* NSImage+Compatibility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSImage+Compatibility.m"; path = "SDWebImage/Core/NSImage+Compatibility.m"; sourceTree = "<group>"; };
 		69C25E77F77647B3C36C6D4719198432 /* SDWebImageSwiftUI-iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "SDWebImageSwiftUI-iOS.modulemap"; sourceTree = "<group>"; };
 		69D10BA4E55FD08A866D72E09644AFEF /* SDWebImageDownloaderOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageDownloaderOperation.h; path = SDWebImage/Core/SDWebImageDownloaderOperation.h; sourceTree = "<group>"; };
-		6A12DF4CC4A2B6CDB3B209E76B86EA58 /* SDWebImage-macOS */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "SDWebImage-macOS"; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A12DF4CC4A2B6CDB3B209E76B86EA58 /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ABB8BEB44418BD1BBFB34995DACEE70 /* SDAsyncBlockOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDAsyncBlockOperation.h; path = SDWebImage/Private/SDAsyncBlockOperation.h; sourceTree = "<group>"; };
 		6D5AD984ABB5D190C0B4E5F20F2B5474 /* Pods-The Games (macOS).debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-The Games (macOS).debug.xcconfig"; sourceTree = "<group>"; };
 		6E5E96D1F1704E3B1E360F04F6F33321 /* SDInternalMacros.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDInternalMacros.h; path = SDWebImage/Private/SDInternalMacros.h; sourceTree = "<group>"; };
@@ -669,7 +671,7 @@
 		949927CAEBB057432DB1CD4F9CA6351E /* SDAsyncBlockOperation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDAsyncBlockOperation.m; path = SDWebImage/Private/SDAsyncBlockOperation.m; sourceTree = "<group>"; };
 		94FC77865C8401415B34BF9AA20A7AEB /* ParameterEncoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = Source/ParameterEncoding.swift; sourceTree = "<group>"; };
 		95B35AD5F8256AC2F6C7A68773BA247F /* SDWebImageDownloaderDecryptor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageDownloaderDecryptor.m; path = SDWebImage/Core/SDWebImageDownloaderDecryptor.m; sourceTree = "<group>"; };
-		966AA42878212207687E9A2A4DBCD618 /* Alamofire-iOS */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Alamofire-iOS"; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		966AA42878212207687E9A2A4DBCD618 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96CC10E90CCDCF547FE02063BC7B517A /* SDImageCoder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDImageCoder.h; path = SDWebImage/Core/SDImageCoder.h; sourceTree = "<group>"; };
 		980215D0C64DA38F59CEAED436401812 /* SwiftUICompatibility.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftUICompatibility.swift; path = SDWebImageSwiftUI/Classes/SwiftUICompatibility.swift; sourceTree = "<group>"; };
 		98B493C612B71944B6490762DD0A922B /* Pods-The Games (macOS)-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-The Games (macOS)-acknowledgements.plist"; sourceTree = "<group>"; };
@@ -679,7 +681,7 @@
 		9B618AF020FE543A59F4E3CC2FFBDCF2 /* SDWebImageTransition.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageTransition.m; path = SDWebImage/Core/SDWebImageTransition.m; sourceTree = "<group>"; };
 		9C90671DE0186EA7DE943B0A748D3D4C /* Pods-The Games (macOS).release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-The Games (macOS).release.xcconfig"; sourceTree = "<group>"; };
 		9CDB6723427C7F728FC5544E4CF6091C /* SDAnimatedImageView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDAnimatedImageView.h; path = SDWebImage/Core/SDAnimatedImageView.h; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9D972A76B58B3D561AA1888F93EF95EC /* SDWebImageOptionsProcessor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageOptionsProcessor.m; path = SDWebImage/Core/SDWebImageOptionsProcessor.m; sourceTree = "<group>"; };
 		9E6784380605CECD511A37FD3A709323 /* Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Source/Alamofire.swift; sourceTree = "<group>"; };
 		9EA487AD9C2CF1671C2E409A067788C0 /* SDWebImageOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDWebImageOperation.h; path = SDWebImage/Core/SDWebImageOperation.h; sourceTree = "<group>"; };
@@ -729,7 +731,7 @@
 		C9772A5F2CA5A59625E7765B1D253EBD /* Alamofire-iOS-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-iOS-prefix.pch"; sourceTree = "<group>"; };
 		C980A7DD9BD0081530C9A646AC9CB94E /* Combine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Combine.swift; path = Source/Combine.swift; sourceTree = "<group>"; };
 		CA5058563544333972D8B11621F0317A /* SDImageAWebPCoder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDImageAWebPCoder.m; path = SDWebImage/Core/SDImageAWebPCoder.m; sourceTree = "<group>"; };
-		CFF06E53BC38C0114EDAF51F6C433D9F /* SDWebImage-iOS */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "SDWebImage-iOS"; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFF06E53BC38C0114EDAF51F6C433D9F /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1008027D98831E78B4D4820BADCDE44 /* NSImage+Compatibility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSImage+Compatibility.h"; path = "SDWebImage/Core/NSImage+Compatibility.h"; sourceTree = "<group>"; };
 		D3CBA6C42FFAB124B43531B60667B72E /* SDWeakProxy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWeakProxy.m; path = SDWebImage/Private/SDWeakProxy.m; sourceTree = "<group>"; };
 		D3F2A96700641CE1DC2CE9D3A1F6A4E5 /* OperationQueue+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "OperationQueue+Alamofire.swift"; path = "Source/OperationQueue+Alamofire.swift"; sourceTree = "<group>"; };
@@ -1078,7 +1080,6 @@
 			children = (
 				FD33662E51203342198513B0D3DBA72F /* Support Files */,
 			);
-			name = SwiftLint;
 			path = SwiftLint;
 			sourceTree = "<group>";
 		};
@@ -1088,7 +1089,6 @@
 				32E5E2D825AA294D03E3F5A18837508F /* Core */,
 				28BE10D8F41AB5149D4FC47B91E6AAB1 /* Support Files */,
 			);
-			name = SDWebImage;
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
@@ -1110,21 +1110,20 @@
 				32A975EB56B0F101B60E3F267FA2901B /* WebImage.swift */,
 				F3D9FF17F34E978882565C509C730027 /* Support Files */,
 			);
-			name = SDWebImageSwiftUI;
 			path = SDWebImageSwiftUI;
 			sourceTree = "<group>";
 		};
 		A5812AA3322190F9D4BB775A9801989C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				966AA42878212207687E9A2A4DBCD618 /* Alamofire-iOS */,
-				0CCE9CB82B4F89C8E07ADCACFD3DB134 /* Alamofire-macOS */,
+				966AA42878212207687E9A2A4DBCD618 /* Alamofire.framework */,
+				0CCE9CB82B4F89C8E07ADCACFD3DB134 /* Alamofire.framework */,
 				3A99D938567E50EBBF143082B96F73C5 /* Pods-The Games (iOS) */,
-				5808AAA29FCA28E8BA1B8CBF14DA8A25 /* Pods-The Games (macOS) */,
-				CFF06E53BC38C0114EDAF51F6C433D9F /* SDWebImage-iOS */,
-				6A12DF4CC4A2B6CDB3B209E76B86EA58 /* SDWebImage-macOS */,
+				5808AAA29FCA28E8BA1B8CBF14DA8A25 /* Pods_The_Games__macOS_.framework */,
+				CFF06E53BC38C0114EDAF51F6C433D9F /* SDWebImage.framework */,
+				6A12DF4CC4A2B6CDB3B209E76B86EA58 /* SDWebImage.framework */,
 				D70ADC50BBABECC97AA36A0F2EF6AC8C /* SDWebImageSwiftUI-iOS */,
-				15463535A1871508D2DC3BB660831025 /* SDWebImageSwiftUI-macOS */,
+				15463535A1871508D2DC3BB660831025 /* SDWebImageSwiftUI.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1191,7 +1190,6 @@
 				3033FB01E9FF6225087A354A0B429722 /* Validation.swift */,
 				A59FC7BEC00463A9F894CE8A6B22AC62 /* Support Files */,
 			);
-			name = Alamofire;
 			path = Alamofire;
 			sourceTree = "<group>";
 		};
@@ -1509,7 +1507,7 @@
 			);
 			name = "Alamofire-macOS";
 			productName = Alamofire;
-			productReference = 0CCE9CB82B4F89C8E07ADCACFD3DB134 /* Alamofire-macOS */;
+			productReference = 0CCE9CB82B4F89C8E07ADCACFD3DB134 /* Alamofire.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		744F52F389060600FE79F1B9A709C630 /* SDWebImage-iOS */ = {
@@ -1527,7 +1525,7 @@
 			);
 			name = "SDWebImage-iOS";
 			productName = SDWebImage;
-			productReference = CFF06E53BC38C0114EDAF51F6C433D9F /* SDWebImage-iOS */;
+			productReference = CFF06E53BC38C0114EDAF51F6C433D9F /* SDWebImage.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		8E7ACA1DCA84C745E1CD7DD12232B7DA /* SDWebImageSwiftUI-iOS */ = {
@@ -1568,7 +1566,7 @@
 			);
 			name = "Pods-The Games (macOS)";
 			productName = Pods_The_Games__macOS_;
-			productReference = 5808AAA29FCA28E8BA1B8CBF14DA8A25 /* Pods-The Games (macOS) */;
+			productReference = 5808AAA29FCA28E8BA1B8CBF14DA8A25 /* Pods_The_Games__macOS_.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		BA7E827DA497672080962D172E2A19DF /* Pods-The Games (iOS) */ = {
@@ -1609,7 +1607,7 @@
 			);
 			name = "SDWebImageSwiftUI-macOS";
 			productName = SDWebImageSwiftUI;
-			productReference = 15463535A1871508D2DC3BB660831025 /* SDWebImageSwiftUI-macOS */;
+			productReference = 15463535A1871508D2DC3BB660831025 /* SDWebImageSwiftUI.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		F88DA3D91184A5E5E96DBC787DF47C28 /* SDWebImage-macOS */ = {
@@ -1627,7 +1625,7 @@
 			);
 			name = "SDWebImage-macOS";
 			productName = SDWebImage;
-			productReference = 6A12DF4CC4A2B6CDB3B209E76B86EA58 /* SDWebImage-macOS */;
+			productReference = 6A12DF4CC4A2B6CDB3B209E76B86EA58 /* SDWebImage.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		FD8828BFC368157226E204A32CD5B6DE /* Alamofire-iOS */ = {
@@ -1645,7 +1643,7 @@
 			);
 			name = "Alamofire-iOS";
 			productName = Alamofire;
-			productReference = 966AA42878212207687E9A2A4DBCD618 /* Alamofire-iOS */;
+			productReference = 966AA42878212207687E9A2A4DBCD618 /* Alamofire.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -1655,7 +1653,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1310;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 11.0";
@@ -2110,7 +2108,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0733DD4628AB32A0E453B46BFBAD6809 /* SwiftLint-macOS.debug.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -2130,7 +2127,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2144,7 +2141,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9190FAAFC303EF90AC8DE8F611ED9C3F /* Alamofire-macOS.release.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -2215,7 +2211,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2B7034E11EBCBA73BA9459D274E41D6F /* SDWebImageSwiftUI-macOS.debug.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -2252,7 +2247,6 @@
 			baseConfigurationReference = 6D5AD984ABB5D190C0B4E5F20F2B5474 /* Pods-The Games (macOS).debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -2336,7 +2330,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/Alamofire-iOS/Alamofire-iOS-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/Alamofire-iOS/Alamofire-iOS-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2371,7 +2365,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/SDWebImage-iOS/SDWebImage-iOS-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/SDWebImage-iOS/SDWebImage-iOS-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2395,7 +2389,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D5B1EB7D1D3DFFFAF7BFBFF5299BDADC /* SDWebImage-macOS.release.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -2431,7 +2424,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F373483A50D53AC8A1BD110893AC797E /* SwiftLint-macOS.release.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -2449,7 +2441,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 613F6987B1CD1072E538AE87FB20C7BC /* SDWebImage-macOS.debug.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -2497,7 +2488,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/Alamofire-iOS/Alamofire-iOS-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/Alamofire-iOS/Alamofire-iOS-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2520,7 +2511,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 40ECE09C971CE9A4F622E5EB7CE1C37E /* SDWebImageSwiftUI-macOS.release.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -2726,7 +2716,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2752,7 +2742,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/SDWebImage-iOS/SDWebImage-iOS-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/SDWebImage-iOS/SDWebImage-iOS-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2813,7 +2803,6 @@
 			baseConfigurationReference = 9C90671DE0186EA7DE943B0A748D3D4C /* Pods-The Games (macOS).release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -2849,7 +2838,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 23B079BFFE8A04F8FB7B3E2B45EAF6D1 /* Alamofire-macOS.debug.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";

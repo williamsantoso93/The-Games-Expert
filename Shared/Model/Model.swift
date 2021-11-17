@@ -15,6 +15,11 @@ struct DataResult: Codable {
     enum CodingKeys: String, CodingKey {
         case next, previous, results
     }
+    init(next: String?, previous: String?, results: [GameData]?) {
+        self.next = next
+        self.previous = previous
+        self.results = results
+    }
 }
 
 // MARK: - Result
@@ -44,6 +49,23 @@ struct GameData: Codable {
         case parentPlatforms = "parent_platforms"
         case genres
     }
+    init(gameID: Int,
+         name: String,
+         released: String? = nil,
+         backgroundImage: String? = nil,
+         rating: Double? = nil,
+         ratingTop: Int? = nil,
+         parentPlatforms: [Item]? = nil,
+         genres: [Item]? = nil) {
+        self.gameID = gameID
+        self.name = name
+        self.released = released
+        self.backgroundImage = backgroundImage
+        self.rating = rating
+        self.ratingTop = ratingTop
+        self.parentPlatforms = parentPlatforms
+        self.genres = genres
+    }   
 }
 
 // MARK: - Platform
@@ -53,6 +75,10 @@ struct Item: Codable {
     enum CodingKeys: String, CodingKey {
         case itemID = "id"
         case name
+    }
+    init(itemID: Int?, name: String?) {
+        self.itemID = itemID
+        self.name = name
     }
 }
 
@@ -90,9 +116,35 @@ struct DetailGame: Codable {
         case publishers
         case description = "description_raw"
     }
+    init(detailID: Int,
+         name: String,
+         released: String?,
+         backgroundImage: String?,
+         rating: Double?,
+         ratingTop: Int?,
+         parentPlatforms: [ParentPlatform]?,
+         developers: [Item]?,
+         genres: [Item]?,
+         publishers: [Item]?,
+         description: String) {
+        self.detailID = detailID
+        self.name = name
+        self.released = released
+        self.backgroundImage = backgroundImage
+        self.rating = rating
+        self.ratingTop = ratingTop
+        self.parentPlatforms = parentPlatforms
+        self.developers = developers
+        self.genres = genres
+        self.publishers = publishers
+        self.description = description
+    }
 }
 
 // MARK: - ParentPlatform
 struct ParentPlatform: Codable {
     let platform: Item
+    init(platform: Item) {
+        self.platform = platform
+    }
 }
