@@ -15,6 +15,7 @@ class DetailViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var message = "Error please try again"
     private var cancellables: Set<AnyCancellable> = []
+    
     func getGameDetail() {
         guard let gameID = gameID else { return }
         isLoading = true
@@ -34,6 +35,7 @@ class DetailViewModel: ObservableObject {
             })
             .store(in: &cancellables)
     }
+    
     func getDetail(_ urlString: String) -> AnyPublisher<DetailGame, NetworkError> {
         return Future<DetailGame, NetworkError> { completion in
             Networking.shared.getData(from: urlString)
@@ -52,6 +54,7 @@ class DetailViewModel: ObservableObject {
                 .store(in: &self.cancellables)
         }.eraseToAnyPublisher()
     }
+    
     func addFavorite(_ moc: NSManagedObjectContext) {
         if let game = game {
             let favorite = Favorite(context: moc)
@@ -68,18 +71,21 @@ class DetailViewModel: ObservableObject {
             PersistenceController.shared.save()
         }
     }
+    
     func deleteFavorite(_ moc: NSManagedObjectContext, _ results: FetchedResults<Favorite>) {
         if let index = getIndex(results) {
             let favorite = results[index]
             moc.delete(favorite)
         }
     }
+    
     func isFavorite(results: FetchedResults<Favorite>) -> Bool {
         if getIndex(results) != nil {
             return true
         }
         return false
     }
+    
     func getIndex(_ results: FetchedResults<Favorite>) -> Int? {
         if let gameID = gameID {
             let index = results.firstIndex {

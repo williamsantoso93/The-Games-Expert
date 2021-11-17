@@ -12,9 +12,11 @@ struct DataResult: Codable {
     let next: String?
     let previous: String?
     let results: [GameData]?
+    
     enum CodingKeys: String, CodingKey {
         case next, previous, results
     }
+    
     init(next: String?, previous: String?, results: [GameData]?) {
         self.next = next
         self.previous = previous
@@ -40,6 +42,7 @@ struct GameData: Codable {
     var ratingTop: Int?
     var parentPlatforms: [Item]?
     var genres: [Item]?
+    
     enum CodingKeys: String, CodingKey {
         case gameID = "id"
         case name, released
@@ -49,6 +52,7 @@ struct GameData: Codable {
         case parentPlatforms = "parent_platforms"
         case genres
     }
+    
     init(gameID: Int,
          name: String,
          released: String? = nil,
@@ -72,10 +76,12 @@ struct GameData: Codable {
 struct Item: Codable {
     let itemID: Int?
     let name: String?
+    
     enum CodingKeys: String, CodingKey {
         case itemID = "id"
         case name
     }
+    
     init(itemID: Int?, name: String?) {
         self.itemID = itemID
         self.name = name
@@ -103,6 +109,7 @@ struct DetailGame: Codable {
     let genres: [Item]?
     let publishers: [Item]?
     let description: String
+    
     enum CodingKeys: String, CodingKey {
         case detailID = "id"
         case name
@@ -116,6 +123,7 @@ struct DetailGame: Codable {
         case publishers
         case description = "description_raw"
     }
+    
     init(detailID: Int,
          name: String,
          released: String?,
@@ -144,6 +152,7 @@ struct DetailGame: Codable {
 // MARK: - ParentPlatform
 struct ParentPlatform: Codable {
     let platform: Item
+    
     init(platform: Item) {
         self.platform = platform
     }

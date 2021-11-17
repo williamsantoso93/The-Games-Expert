@@ -19,6 +19,7 @@ struct DetailScreen: View {
     ]
     @StateObject var viewModel = DetailViewModel()
     @State var isFavorite = false
+    
     var body: some View {
         Group {
             if let game = viewModel.game {
