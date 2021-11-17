@@ -10,14 +10,18 @@ import CoreData
 import Combine
 
 class DetailViewModel: ObservableObject {
+    @Published var gameID: Int
     @Published var game: DetailGame?
-    @Published var gameID: Int?
     @Published var isLoading = false
     @Published var message = "Error please try again"
     private var cancellables: Set<AnyCancellable> = []
     
+    init(gameID: Int) {
+        self.gameID = gameID
+        getGameDetail()
+    }
+    
     func getGameDetail() {
-        guard let gameID = gameID else { return }
         isLoading = true
         let urlString = Networking.shared.baseAPI + "/games/\(gameID)"
         getDetail(urlString)
@@ -87,12 +91,9 @@ class DetailViewModel: ObservableObject {
     }
     
     func getIndex(_ results: FetchedResults<Favorite>) -> Int? {
-        if let gameID = gameID {
-            let index = results.firstIndex {
-                $0.gameID == gameID
-            }
-            return index
+        let index = results.firstIndex {
+            $0.gameID == gameID
         }
-        return nil
+        return index
     }
 }

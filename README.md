@@ -12,7 +12,7 @@ Assumption :
 * Use userDefaults for name & social media
 * Use coreData for favorite
 * Use Combine as Reactive Programming
-* Use manual injection ans Dependency Injection
+* Use manual injection ans Dependency Injection (implement in DetailScreen & DetailViewModel)
 
 
 Used third party library (cocoapods) :

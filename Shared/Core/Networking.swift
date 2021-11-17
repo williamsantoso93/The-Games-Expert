@@ -19,7 +19,11 @@ enum NetworkError: Error {
     case statusCode(Int)
 }
 
-class Networking {
+protocol NetworkingProtocol {
+    func getData<T: Codable>(from urlString: String, queryItems: [URLQueryItem]?) -> AnyPublisher<T, NetworkError>
+}
+
+class Networking: NetworkingProtocol {
     static let shared = Networking()
     let baseAPI = "https://api.rawg.io/api"
     let apiKey = "e07d0723795c4dfc8130cbcaf6083be6"

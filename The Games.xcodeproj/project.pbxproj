@@ -148,6 +148,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		6AEE75C02745372500870CE2 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				7A7CAE4F26C41DA70021A438 /* TheGamesApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
 		7A7CAE4926C41DA70021A438 = {
 			isa = PBXGroup;
 			children = (
@@ -164,10 +172,10 @@
 		7A7CAE4E26C41DA70021A438 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				7A7CAE4F26C41DA70021A438 /* TheGamesApp.swift */,
-				7A7EFB4426C80116008F581C /* Resources */,
-				7A7EFB4226C800FC008F581C /* Model */,
-				7A7EFB4526C8012E008F581C /* View Model */,
+				6AEE75C02745372500870CE2 /* App */,
+				7A7EFB4426C80116008F581C /* Core */,
+				7A7EFB4226C800FC008F581C /* Domain */,
+				7A7EFB4526C8012E008F581C /* Presenter */,
 				7A7EFB4326C8010E008F581C /* View */,
 				7A7CAE5126C41DA90021A438 /* Assets.xcassets */,
 				7A0E7E6B26D258EB0025241E /* TheGamesModel.xcdatamodeld */,
@@ -203,12 +211,12 @@
 			path = macOS;
 			sourceTree = "<group>";
 		};
-		7A7EFB4226C800FC008F581C /* Model */ = {
+		7A7EFB4226C800FC008F581C /* Domain */ = {
 			isa = PBXGroup;
 			children = (
 				7A7EFB3F26C7ECDE008F581C /* Model.swift */,
 			);
-			path = Model;
+			path = Domain;
 			sourceTree = "<group>";
 		};
 		7A7EFB4326C8010E008F581C /* View */ = {
@@ -225,7 +233,7 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		7A7EFB4426C80116008F581C /* Resources */ = {
+		7A7EFB4426C80116008F581C /* Core */ = {
 			isa = PBXGroup;
 			children = (
 				7A0E7E7226D259540025241E /* Persistence.swift */,
@@ -233,16 +241,16 @@
 				7A3D954426C4B2B700EFB7AE /* Networking.swift */,
 				7AF80A5D26D3D17600ECABEF /* RequestAccess.swift */,
 			);
-			path = Resources;
+			path = Core;
 			sourceTree = "<group>";
 		};
-		7A7EFB4526C8012E008F581C /* View Model */ = {
+		7A7EFB4526C8012E008F581C /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
 				7A7EFB4626C801D5008F581C /* HomeViewModel.swift */,
 				7A88F5A526C96F7B007A46B6 /* DetailViewModel.swift */,
 			);
-			path = "View Model";
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -10,15 +10,18 @@ import SDWebImageSwiftUI
 import CoreData
 
 struct DetailScreen: View {
+    @StateObject var viewModel: DetailViewModel
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(entity: Favorite.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Favorite.timestamp, ascending: true)]) var results: FetchedResults<Favorite>
-    var gameID: Int
     let columns: [GridItem] = [
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
-    @StateObject var viewModel = DetailViewModel()
     @State var isFavorite = false
+    
+    init(gameID: Int) {
+        self._viewModel = StateObject(wrappedValue: DetailViewModel(gameID: gameID))
+    }
     
     var body: some View {
         Group {
@@ -98,9 +101,7 @@ struct DetailScreen: View {
             }
         }
         .onAppear {
-            viewModel.gameID = gameID
             isFavorite = viewModel.isFavorite(results: results)
-            viewModel.getGameDetail()
         }
         .navigationTitle("Detail")
         .navigationBarItems(trailing:
