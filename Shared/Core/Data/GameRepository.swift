@@ -14,7 +14,6 @@ protocol GameRepositoryProtocol {
     func getDetail(_ gameID: Int) -> AnyPublisher<DetailGame, Error>
     func addFavorite(_ favorite: DetailGame) -> AnyPublisher<Bool, Error>
     func deleteFavorite(_ favorite: DetailGame) -> AnyPublisher<Bool, Error>
-    func isFavorite(_ gameID: Int) -> AnyPublisher<Bool, Error> 
 }
 
 class GameRepository {
@@ -61,31 +60,5 @@ extension GameRepository: GameRepositoryProtocol {
         let favoriteEntity = GameMapper.mapDetailGameToFavoriteListEntities(input: favorite)
         return self.locale.deleteFavorite(favoriteEntity)
             .eraseToAnyPublisher()
-    }
-    
-    func isFavorite(_ gameID: Int) -> AnyPublisher<Bool, Error> {
-        var cancellables: Set<AnyCancellable> = []
-        return Future<Bool, Error> { completionHandler in
-            self.locale.getFavoriteList()
-                .receive(on: RunLoop.main)
-                .sink(receiveCompletion: { completion in
-                    switch completion {
-                    case .finished:
-                        break
-                    case .failure(let error):
-                        completionHandler(.failure(error))
-                    }
-                }, receiveValue: { data in
-                    let index = data.firstIndex {
-                        $0.gameID == gameID
-                    }
-                    if index != nil {
-                        completionHandler(.success(true))
-                    } else {
-                        completionHandler(.success(false))
-                    }
-                })
-                .store(in: &cancellables)
-        }.eraseToAnyPublisher()
     }
 }

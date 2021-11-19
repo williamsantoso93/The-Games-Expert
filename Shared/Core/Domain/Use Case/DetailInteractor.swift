@@ -13,7 +13,6 @@ protocol DetailUseCase {
     func getFavoriteList() -> AnyPublisher<[GameData], Error>
     func addFavorite(_ favorite: DetailGame) -> AnyPublisher<Bool, Error>
     func deleteFavorite(_ favorite: DetailGame) -> AnyPublisher<Bool, Error>
-    func isFavorite(_ gameID: Int) -> AnyPublisher<Bool, Error>
 }
 
 class DetailInteractor: DetailUseCase {
@@ -37,9 +36,5 @@ class DetailInteractor: DetailUseCase {
     
     func deleteFavorite(_ favorite: DetailGame) -> AnyPublisher<Bool, Error> {
         repository.deleteFavorite(favorite)
-    }
-    
-    func isFavorite(_ gameID: Int) -> AnyPublisher<Bool, Error> {
-        repository.isFavorite(gameID)
     }
 }

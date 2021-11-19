@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import CoreData
 import Combine
 
 class DetailViewModel: ObservableObject {
@@ -44,7 +43,7 @@ class DetailViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
-    func addFavorite(_ moc: NSManagedObjectContext) {
+    func addFavorite() {
         if let game = game {
             isLoading = true
             detailUseCase.addFavorite(game)
@@ -64,7 +63,7 @@ class DetailViewModel: ObservableObject {
         }
     }
     
-    func deleteFavorite(_ moc: NSManagedObjectContext, _ results: FetchedResults<Favorite>) {
+    func deleteFavorite() {
         if let game = game {
             isLoading = true
             detailUseCase.deleteFavorite(game)
