@@ -16,26 +16,27 @@ struct FavoriteScreen: View {
     @State var searchText = ""
     var filterGamesData: [GameData] {
         if searchText.isEmpty {
-            return gamesData
+            return viewModel.gamesData
         }
-        return gamesData.filter {
+        return viewModel.gamesData.filter {
             $0.name.localizedStandardContains(searchText.lowercased())
         }
     }
     
+    @ObservedObject var viewModel: FavoriteViewModel
     private let router = HomeRouter()
     
     var body: some View {
         Group {
-            if !filterGamesData.isEmpty {
+            if !viewModel.filterGamesData.isEmpty {
                 VStack(spacing: 0.0) {
                     ScrollView {
                         LazyVStack(spacing: 16) {
-                            ForEach(filterGamesData.indices, id: \.self) { index in
+                            ForEach(viewModel.filterGamesData.indices, id: \.self) { index in
                                 NavigationLink(
-                                    destination: router.makeDetailView(gameID: filterGamesData[index].gameID),
+                                    destination: router.makeDetailView(gameID: viewModel.filterGamesData[index].gameID),
                                     label: {
-                                        CardView(game: filterGamesData[index])
+                                        CardView(game: viewModel.filterGamesData[index])
                                     })
                             }
                         }
@@ -48,9 +49,9 @@ struct FavoriteScreen: View {
         }
         .navigationTitle("Favorite")
         .navigationSearchBar {
-            SearchBar("Search Games", text: $searchText)
+            SearchBar("Search Games", text: $viewModel.searchText)
             .onCancel {
-                searchText = ""
+                viewModel.searchText = ""
             }
             .searchBarStyle(.default)
         }
@@ -65,6 +66,7 @@ struct FavoriteScreen: View {
                 temp.append(gameData)
             }
             gamesData = temp
+            viewModel.loadNewList()
         }
     }
 }

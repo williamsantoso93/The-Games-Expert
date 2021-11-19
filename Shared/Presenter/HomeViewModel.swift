@@ -13,7 +13,7 @@ class HomeViewModel: ObservableObject {
     private let router = HomeRouter()
     private let homeUseCase: HomeUseCase
     
-    @Published var dataResult: DataResult?
+    @Published var dataResult: GamesListResponse?
     @Published var gamesData: [GameData] = []
     @Published var searchText = ""
     @Published var isLoading = false
@@ -24,9 +24,7 @@ class HomeViewModel: ObservableObject {
         loadNewList()
     }
     
-    func loadNewList() {
-        isLoading = true
-        gamesData.removeAll()
+    func getListGames(nextPage: String? = nil) {
         homeUseCase.getListGames(nextPage: nil, searchText: self.searchText)
             .receive(on: RunLoop.main)
             .sink(receiveCompletion: { completion in
@@ -41,13 +39,20 @@ class HomeViewModel: ObservableObject {
             }, receiveValue: { data in
                 self.dataResult = data
                 if let results = data.results {
-                    self.gamesData.append(contentsOf: results)
+                    let mappedResults = GameMapper.mapGameDataResponsesToGamedata(input: results)
+                    self.gamesData.append(contentsOf: mappedResults)
                     if self.gamesData.isEmpty {
                         self.message = "no game data"
                     }
                 }
             })
             .store(in: &cancellables)
+    }
+    
+    func loadNewList() {
+        isLoading = true
+        gamesData.removeAll()
+        getListGames()
     }
     
     func clearSearch() {
@@ -66,33 +71,22 @@ class HomeViewModel: ObservableObject {
         guard !gamesData.isEmpty && gamesData.count >= 2 else { return }
         let secondLastData = gamesData[gamesData.count - 2]
         if currentGamesData.gameID == secondLastData.gameID {
-            homeUseCase.getListGames(nextPage: next, searchText: self.searchText)
-                .receive(on: RunLoop.main)
-                .sink(receiveCompletion: { completion in
-                    switch completion {
-                    case .finished:
-                        break
-                    case .failure(let error):
-                        self.message = "Error please try again"
-                        print(error.localizedDescription)
-                    }
-                }, receiveValue: { data in
-                    self.dataResult = data
-                    if let results = data.results {
-                        self.gamesData.append(contentsOf: results)
-                        if self.gamesData.isEmpty {
-                            self.message = "no game data"
-                        }
-                    }
-                })
-                .store(in: &cancellables)
+            getListGames(nextPage: next)
         }
     }
+    
     func linkBuilder<Content: View>(
       gameID: Int,
       @ViewBuilder content: () -> Content
     ) -> some View {
       NavigationLink(
       destination: router.makeDetailView(gameID: gameID)) { content() }
+    }
+    
+    func linkBuilderFavorite<Content: View>(
+      @ViewBuilder content: () -> Content
+    ) -> some View {
+      NavigationLink(
+      destination: router.makeFavoriteView()) { content() }
     }
 }

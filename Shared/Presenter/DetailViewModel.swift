@@ -16,6 +16,8 @@ class DetailViewModel: ObservableObject {
     @Published var game: DetailGame?
     @Published var isLoading = false
     @Published var message = "Error please try again"
+    @Published var isFavorite: Bool = false
+    
     private var cancellables: Set<AnyCancellable> = []
     
     init(gameID: Int, detailUseCase: DetailUseCase) {
@@ -44,37 +46,72 @@ class DetailViewModel: ObservableObject {
     
     func addFavorite(_ moc: NSManagedObjectContext) {
         if let game = game {
-            let favorite = Favorite(context: moc)
-            favorite.favoriteID = UUID()
-            favorite.timestamp = Date()
-            favorite.gameID = Int64(game.detailID)
-            favorite.name = game.name
-            favorite.rating = game.rating ?? 0
-            favorite.backgroundImage = game.backgroundImage
-            favorite.released = game.released
-            if let genresData = try? JSONEncoder().encode(game.genres) {
-                favorite.genres = String(data: genresData, encoding: .utf8)
-            }
-            PersistenceController.shared.save()
+            isLoading = true
+            detailUseCase.addFavorite(game)
+                .receive(on: RunLoop.main)
+                .sink(receiveCompletion: { completion in
+                    switch completion {
+                    case .finished:
+                        self.isLoading = false
+                    case .failure(let error):
+                        self.message = "Error please try again"
+                        print(error.localizedDescription)
+                    }
+                    self.getIsFavorite()
+                }, receiveValue: { _ in
+                })
+                .store(in: &cancellables)
         }
     }
     
     func deleteFavorite(_ moc: NSManagedObjectContext, _ results: FetchedResults<Favorite>) {
-        if let index = getIndex(results) {
-            let favorite = results[index]
-            moc.delete(favorite)
+        if let game = game {
+            isLoading = true
+            detailUseCase.deleteFavorite(game)
+                .receive(on: RunLoop.main)
+                .sink(receiveCompletion: { completion in
+                    self.isLoading = false
+                    switch completion {
+                    case .finished:
+                        break
+                    case .failure(let error):
+                        self.message = "Error please try again"
+                        print(error.localizedDescription)
+                    }
+                    self.getIsFavorite()
+                }, receiveValue: { _ in
+                })
+                .store(in: &cancellables)
         }
     }
     
-    func isFavorite(results: FetchedResults<Favorite>) -> Bool {
-        if getIndex(results) != nil {
+    func getIsFavorite() {
+        detailUseCase.getFavoriteList()
+            .receive(on: RunLoop.main)
+            .sink { completion in
+                self.isLoading = false
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    self.message = "Error please try again"
+                    print(error.localizedDescription)
+                }
+            } receiveValue: { data in
+                self.isFavorite = self.isGameFavorite(data)
+            }
+            .store(in: &cancellables)
+    }
+    
+    func isGameFavorite(_ gamesData: [GameData]) -> Bool {
+        if getIndex(gamesData) != nil {
             return true
         }
         return false
     }
     
-    func getIndex(_ results: FetchedResults<Favorite>) -> Int? {
-        let index = results.firstIndex {
+    func getIndex(_ gamesData: [GameData]) -> Int? {
+        let index = gamesData.firstIndex {
             $0.gameID == gameID
         }
         return index

@@ -17,7 +17,6 @@ struct DetailScreen: View {
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
-    @State var isFavorite = false
     
     var body: some View {
         Group {
@@ -97,20 +96,18 @@ struct DetailScreen: View {
             }
         }
         .onAppear {
-            isFavorite = viewModel.isFavorite(results: results)
+            viewModel.getIsFavorite()
         }
         .navigationTitle("Detail")
         .navigationBarItems(trailing:
                                 Button {
-                                    if isFavorite {
+                                    if viewModel.isFavorite {
                                         viewModel.deleteFavorite(moc, results)
-                                        isFavorite = false
                                     } else {
                                         viewModel.addFavorite(moc)
-                                        isFavorite = true
                                     }
                                 } label: {
-                                    Image(systemName: "\(isFavorite ? "heart.fill" : "heart")")
+                                    Image(systemName: "\(viewModel.isFavorite ? "heart.fill" : "heart")")
                                         .font(.title3)
                                 }
                                 .disabled(viewModel.isLoading)

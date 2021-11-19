@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 protocol HomeUseCase {
-    func getListGames(nextPage: String?, searchText: String) -> AnyPublisher<DataResult, NetworkError>
+    func getListGames(nextPage: String?, searchText: String) -> AnyPublisher<GamesListResponse, Error>
 }
 
 class HomeInteractor: HomeUseCase {
@@ -19,7 +19,7 @@ class HomeInteractor: HomeUseCase {
         self.repository = repository
     }
     
-    func getListGames(nextPage: String?, searchText: String) -> AnyPublisher<DataResult, NetworkError> {
+    func getListGames(nextPage: String?, searchText: String) -> AnyPublisher<GamesListResponse, Error> {
         return repository.getListGames(nextPage: nextPage, searchText: searchText)
     }
 }

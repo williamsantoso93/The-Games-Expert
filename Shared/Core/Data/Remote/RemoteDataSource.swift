@@ -9,19 +9,9 @@ import Foundation
 import Alamofire
 import Combine
 
-enum NetworkError: Error {
-    case badUrl
-    case decodingError
-    case encodingError
-    case noData
-    case notLogin
-    case errorMessage(String)
-    case statusCode(Int)
-}
-
 protocol RemoteDataSourceProtocol {
-    func getListGames(nextPage: String?, searchText: String) -> AnyPublisher<DataResult, NetworkError>
-    func getDetail(_ gameID: Int) -> AnyPublisher<DetailGame, NetworkError>
+    func getListGames(nextPage: String?, searchText: String) -> AnyPublisher<GamesListResponse, Error>
+    func getDetail(_ gameID: Int) -> AnyPublisher<DetailGameResponse, Error>
 }
 
 final class RemoteDataSource: NSObject {
@@ -35,13 +25,13 @@ final class RemoteDataSource: NSObject {
 }
 
 extension RemoteDataSource: RemoteDataSourceProtocol {
-    func getListGames(nextPage: String? = nil, searchText: String) -> AnyPublisher<DataResult, NetworkError> {
+    func getListGames(nextPage: String? = nil, searchText: String) -> AnyPublisher<GamesListResponse, Error> {
         var queryItems: [URLQueryItem]? = []
         var urlString = ""
         if let nextPage = nextPage {
             urlString = nextPage
         } else {
-            urlString = Networking.shared.baseAPI + "/games"
+            urlString = baseAPI + "/games"
             if !searchText.isEmpty {
                 queryItems?.append(.init(name: "search", value: searchText))
             }
@@ -52,33 +42,33 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
             components.queryItems = queryItems
         }
         components.queryItems?.append(URLQueryItem(name: "key", value: apiKey))
-        return Future<DataResult, NetworkError> { completion in
+        return Future<GamesListResponse, Error> { completion in
             if let url = components.url {
-                AF.request(url).validate().responseDecodable(of: DataResult.self) { response in
+                AF.request(url).validate().responseDecodable(of: GamesListResponse.self) { response in
                     switch response.result {
                     case .success(let value):
                         completion(.success(value))
                     case .failure:
-                        completion(.failure(.decodingError))
+                        completion(.failure(URLError.invalidResponse))
                     }
                 }
             }
         }.eraseToAnyPublisher()
     }
     
-    func getDetail(_ gameID: Int) -> AnyPublisher<DetailGame, NetworkError> {
-        let urlString = Networking.shared.baseAPI + "/games/\(gameID)"
+    func getDetail(_ gameID: Int) -> AnyPublisher<DetailGameResponse, Error> {
+        let urlString = baseAPI + "/games/\(gameID)"
         var components = URLComponents(string: urlString)!
         components.queryItems = []
         components.queryItems?.append(URLQueryItem(name: "key", value: apiKey))
-        return Future<DetailGame, NetworkError> { completion in
+        return Future<DetailGameResponse, Error> { completion in
             if let url = components.url {
-                AF.request(url).validate().responseDecodable(of: DetailGame.self) { response in
+                AF.request(url).validate().responseDecodable(of: DetailGameResponse.self) { response in
                     switch response.result {
                     case .success(let value):
                         completion(.success(value))
                     case .failure:
-                        completion(.failure(.decodingError))
+                        completion(.failure(URLError.invalidResponse))
                     }
                 }
             }
