@@ -10,21 +10,23 @@ import CoreData
 import Combine
 
 class DetailViewModel: ObservableObject {
+    private let detailUseCase: DetailUseCase
+    
     @Published var gameID: Int
     @Published var game: DetailGame?
     @Published var isLoading = false
     @Published var message = "Error please try again"
     private var cancellables: Set<AnyCancellable> = []
     
-    init(gameID: Int) {
+    init(gameID: Int, detailUseCase: DetailUseCase) {
+        self.detailUseCase = detailUseCase
         self.gameID = gameID
-        getGameDetail()
+        self.getGameDetail()
     }
-    
+        
     func getGameDetail() {
         isLoading = true
-        let urlString = Networking.shared.baseAPI + "/games/\(gameID)"
-        getDetail(urlString)
+        detailUseCase.getDetail(gameID)
             .receive(on: RunLoop.main)
             .sink(receiveCompletion: { completion in
                 switch completion {
@@ -40,9 +42,9 @@ class DetailViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
-    func getDetail(_ urlString: String) -> AnyPublisher<DetailGame, NetworkError> {
-        return Future<DetailGame, NetworkError> { completion in
-            Networking.shared.getData(from: urlString)
+    func addFavorite(_ moc: NSManagedObjectContext) {
+        if let game = game {
+            detailUseCase.addFavorite(game: game)
                 .receive(on: RunLoop.main)
                 .sink(receiveCompletion: { completion in
                     switch completion {
@@ -52,27 +54,9 @@ class DetailViewModel: ObservableObject {
                         self.message = "Error please try again"
                         print(error.localizedDescription)
                     }
-                }, receiveValue: { data in
-                    completion(.success(data))
+                }, receiveValue: { _ in
                 })
-                .store(in: &self.cancellables)
-        }.eraseToAnyPublisher()
-    }
-    
-    func addFavorite(_ moc: NSManagedObjectContext) {
-        if let game = game {
-            let favorite = Favorite(context: moc)
-            favorite.favoriteID = UUID()
-            favorite.timestamp = Date()
-            favorite.gameID = Int64(game.detailID)
-            favorite.name = game.name
-            favorite.rating = game.rating ?? 0
-            favorite.backgroundImage = game.backgroundImage
-            favorite.released = game.released
-            if let genresData = try? JSONEncoder().encode(game.genres) {
-                favorite.genres = String(data: genresData, encoding: .utf8)
-            }
-            PersistenceController.shared.save()
+                .store(in: &cancellables)
         }
     }
     

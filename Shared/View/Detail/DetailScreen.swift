@@ -10,7 +10,7 @@ import SDWebImageSwiftUI
 import CoreData
 
 struct DetailScreen: View {
-    @StateObject var viewModel: DetailViewModel
+    @ObservedObject var viewModel: DetailViewModel
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(entity: Favorite.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Favorite.timestamp, ascending: true)]) var results: FetchedResults<Favorite>
     let columns: [GridItem] = [
@@ -18,10 +18,6 @@ struct DetailScreen: View {
         GridItem(.flexible())
     ]
     @State var isFavorite = false
-    
-    init(gameID: Int) {
-        self._viewModel = StateObject(wrappedValue: DetailViewModel(gameID: gameID))
-    }
     
     var body: some View {
         Group {
@@ -115,17 +111,10 @@ struct DetailScreen: View {
                                     }
                                 } label: {
                                     Image(systemName: "\(isFavorite ? "heart.fill" : "heart")")
-                                        .font(.title)
+                                        .font(.title3)
                                 }
                                 .disabled(viewModel.isLoading)
         )
-    }
-}
-
-struct DetailScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        DetailScreen(gameID: 3498)
-            .previewLayout(.fixed(width: 414, height: 1500))
     }
 }
 

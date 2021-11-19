@@ -10,6 +10,8 @@ import CoreData
 import SwiftUIX
 
 struct FavoriteScreen: View {
+    @ObservedObject var viewModel: FavoriteViewModel
+    
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(entity: Favorite.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Favorite.timestamp, ascending: true)]) var results: FetchedResults<Favorite>
     @State var gamesData: [GameData] = []
@@ -23,6 +25,8 @@ struct FavoriteScreen: View {
         }
     }
     
+    private let router = HomeRouter()
+    
     var body: some View {
         Group {
             if !filterGamesData.isEmpty {
@@ -31,7 +35,7 @@ struct FavoriteScreen: View {
                         LazyVStack(spacing: 16) {
                             ForEach(filterGamesData.indices, id: \.self) { index in
                                 NavigationLink(
-                                    destination: DetailScreen(gameID: filterGamesData[index].gameID),
+                                    destination: router.makeDetailView(gameID: filterGamesData[index].gameID),
                                     label: {
                                         CardView(game: filterGamesData[index])
                                     })
@@ -64,11 +68,5 @@ struct FavoriteScreen: View {
             }
             gamesData = temp
         }
-    }
-}
-
-struct FavoriteScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        FavoriteScreen()
     }
 }

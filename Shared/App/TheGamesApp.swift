@@ -11,10 +11,14 @@ import SwiftUI
 struct TheGamesApp: App {
     let persistenceController = PersistenceController.shared
     @Environment(\.scenePhase) var scenePhase
+    
+    let homeViewModel = HomeViewModel(homeUseCase: Injection.init().provideHome())
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(viewModel: homeViewModel)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(homeViewModel)
         }
         .onChange(of: scenePhase) { newScenePhase in
             switch newScenePhase {

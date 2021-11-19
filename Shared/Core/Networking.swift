@@ -9,16 +9,6 @@ import Foundation
 import Alamofire
 import Combine
 
-enum NetworkError: Error {
-    case badUrl
-    case decodingError
-    case encodingError
-    case noData
-    case notLogin
-    case errorMessage(String)
-    case statusCode(Int)
-}
-
 protocol NetworkingProtocol {
     func getData<T: Codable>(from urlString: String, queryItems: [URLQueryItem]?) -> AnyPublisher<T, NetworkError>
 }

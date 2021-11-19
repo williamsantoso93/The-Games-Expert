@@ -5,27 +5,32 @@
 //  Created by William Santoso on 14/08/21.
 //
 
-import Foundation
+import SwiftUI
 import Combine
 
 class HomeViewModel: ObservableObject {
+    private var cancellables: Set<AnyCancellable> = []
+    private let router = HomeRouter()
+    private let homeUseCase: HomeUseCase
+    
     @Published var dataResult: DataResult?
     @Published var gamesData: [GameData] = []
     @Published var searchText = ""
     @Published var isLoading = false
     @Published var message = "No game data"
     
-    private var cancellables: Set<AnyCancellable> = []
-    
-    init() {
+    init(homeUseCase: HomeUseCase) {
+        self.homeUseCase = homeUseCase
         loadNewList()
     }
     
     func loadNewList() {
+        isLoading = true
         gamesData.removeAll()
-        getListGames()
+        homeUseCase.getListGames(nextPage: nil, searchText: self.searchText)
             .receive(on: RunLoop.main)
             .sink(receiveCompletion: { completion in
+                self.isLoading = false
                 switch completion {
                 case .finished:
                     break
@@ -56,42 +61,12 @@ class HomeViewModel: ObservableObject {
         }
     }
     
-    func getListGames(nextPage: String? = nil) -> AnyPublisher<DataResult, NetworkError> {
-        var queryItems: [URLQueryItem]? = []
-        var urlString = ""
-        if let nextPage = nextPage {
-            urlString = nextPage
-        } else {
-            urlString = Networking.shared.baseAPI + "/games"
-            if !searchText.isEmpty {
-                queryItems?.append(.init(name: "search", value: searchText))
-            }
-        }
-        isLoading = true
-        return Future<DataResult, NetworkError> { completion in
-            Networking.shared.getData(from: urlString, queryItems: queryItems)
-                .receive(on: RunLoop.main)
-                .sink(receiveCompletion: { completion in
-                    switch completion {
-                    case .finished:
-                        self.isLoading = false
-                    case .failure(let error):
-                        self.message = "Error please try again"
-                        print(error.localizedDescription)
-                    }
-                }, receiveValue: { data in
-                    completion(.success(data))
-                })
-                .store(in: &self.cancellables)
-        }.eraseToAnyPublisher()
-    }
-    
     func loadMoreData(currentGamesData: GameData) {
         guard let next = dataResult?.next else { return }
-        guard !gamesData.isEmpty else { return }
+        guard !gamesData.isEmpty && gamesData.count >= 2 else { return }
         let secondLastData = gamesData[gamesData.count - 2]
         if currentGamesData.gameID == secondLastData.gameID {
-            getListGames(nextPage: next)
+            homeUseCase.getListGames(nextPage: next, searchText: self.searchText)
                 .receive(on: RunLoop.main)
                 .sink(receiveCompletion: { completion in
                     switch completion {
@@ -112,5 +87,16 @@ class HomeViewModel: ObservableObject {
                 })
                 .store(in: &cancellables)
         }
+    }
+    func linkBuilder<Content: View>(
+      gameID: Int,
+      @ViewBuilder content: () -> Content
+    ) -> some View {
+      NavigationLink(
+      destination: router.makeDetailView(gameID: gameID)) { content() }
+    }
+    func linkFavoriteBuilder<Content: View>(@ViewBuilder content: () -> Content) -> some View {
+      NavigationLink(
+        destination: router.makeFavoriteView()) { content() }
     }
 }

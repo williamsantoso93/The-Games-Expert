@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftUIX
 
 struct ContentView: View {
-    @StateObject var viewModel = HomeViewModel()
+    @ObservedObject var viewModel: HomeViewModel
     
     var body: some View {
         NavigationView {
@@ -19,14 +19,12 @@ struct ContentView: View {
                         ScrollView {
                             LazyVStack(spacing: 16) {
                                 ForEach(viewModel.gamesData.indices, id: \.self) { index in
-                                    NavigationLink(
-                                        destination: DetailScreen(gameID: viewModel.gamesData[index].gameID),
-                                        label: {
-                                            CardView(game: viewModel.gamesData[index])
-                                                .onAppear {
-                                                    viewModel.loadMoreData(currentGamesData: viewModel.gamesData[index])
-                                                }
-                                        })
+                                    viewModel.linkBuilder(gameID: viewModel.gamesData[index].gameID) {
+                                        CardView(game: viewModel.gamesData[index])
+                                            .onAppear {
+                                                viewModel.loadMoreData(currentGamesData: viewModel.gamesData[index])
+                                            }
+                                    }
                                 }
                             }
                             .padding()
@@ -56,26 +54,19 @@ struct ContentView: View {
             }
             .navigationBarItems(trailing:
                                     HStack(spacing: 16.0) {
-                                        NavigationLink(
-                                            destination: FavoriteScreen(),
-                                            label: {
-                                                Image(systemName: "heart.fill")
-                                                    .font(.title)
-                                            })
+                                        viewModel.linkFavoriteBuilder {
+                                            Image(systemName: "heart.fill")
+                                                .font(.title3)
+                                        }
+                
                                         NavigationLink(
                                             destination: ProfileScreen(),
                                             label: {
                                                 Image(systemName: "person.circle.fill")
-                                                    .font(.title)
+                                                    .font(.title3)
                                             })
                                     }
             )
         }
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
     }
 }
