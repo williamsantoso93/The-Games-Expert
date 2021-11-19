@@ -54,10 +54,12 @@ struct ContentView: View {
             }
             .navigationBarItems(trailing:
                                     HStack(spacing: 16.0) {
-                                        viewModel.linkFavoriteBuilder {
-                                            Image(systemName: "heart.fill")
-                                                .font(.title3)
-                                        }
+                                        NavigationLink(
+                                            destination: FavoriteScreen(),
+                                            label: {
+                                                Image(systemName: "heart.fill")
+                                                    .font(.title3)
+                                            })
                 
                                         NavigationLink(
                                             destination: ProfileScreen(),

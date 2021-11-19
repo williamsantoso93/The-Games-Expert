@@ -95,8 +95,4 @@ class HomeViewModel: ObservableObject {
       NavigationLink(
       destination: router.makeDetailView(gameID: gameID)) { content() }
     }
-    func linkFavoriteBuilder<Content: View>(@ViewBuilder content: () -> Content) -> some View {
-      NavigationLink(
-        destination: router.makeFavoriteView()) { content() }
-    }
 }

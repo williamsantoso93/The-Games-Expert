@@ -13,10 +13,4 @@ class HomeRouter {
         let viewModel = DetailViewModel(gameID: gameID, detailUseCase: detailUseCase)
         return DetailScreen(viewModel: viewModel)
     }
-    
-    func makeFavoriteView() -> some View {
-        let favoriteUseCase = Injection.init().provideFavorite()
-        let viewModel = FavoriteViewModel(favoriteUseCase: favoriteUseCase)
-        return FavoriteScreen(viewModel: viewModel)
-    }
 }

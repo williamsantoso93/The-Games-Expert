@@ -44,19 +44,18 @@ class DetailViewModel: ObservableObject {
     
     func addFavorite(_ moc: NSManagedObjectContext) {
         if let game = game {
-            detailUseCase.addFavorite(game: game)
-                .receive(on: RunLoop.main)
-                .sink(receiveCompletion: { completion in
-                    switch completion {
-                    case .finished:
-                        self.isLoading = false
-                    case .failure(let error):
-                        self.message = "Error please try again"
-                        print(error.localizedDescription)
-                    }
-                }, receiveValue: { _ in
-                })
-                .store(in: &cancellables)
+            let favorite = Favorite(context: moc)
+            favorite.favoriteID = UUID()
+            favorite.timestamp = Date()
+            favorite.gameID = Int64(game.detailID)
+            favorite.name = game.name
+            favorite.rating = game.rating ?? 0
+            favorite.backgroundImage = game.backgroundImage
+            favorite.released = game.released
+            if let genresData = try? JSONEncoder().encode(game.genres) {
+                favorite.genres = String(data: genresData, encoding: .utf8)
+            }
+            PersistenceController.shared.save()
         }
     }
     

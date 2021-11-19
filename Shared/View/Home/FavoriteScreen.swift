@@ -10,8 +10,6 @@ import CoreData
 import SwiftUIX
 
 struct FavoriteScreen: View {
-    @ObservedObject var viewModel: FavoriteViewModel
-    
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(entity: Favorite.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Favorite.timestamp, ascending: true)]) var results: FetchedResults<Favorite>
     @State var gamesData: [GameData] = []
