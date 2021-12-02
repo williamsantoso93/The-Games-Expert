@@ -1,5 +1,5 @@
 language: swift
 osx_image: xcode13.1 
-xcode_project: The Games.xcworkspace 
+xcode_project: The Games.xcodeproj 
 xcode_scheme: The Games (iOS)
 xcode_destination: platform=iOS Simulator,OS=15.0,name=iPhone 11 Pro
