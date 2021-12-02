@@ -576,7 +576,7 @@
 		33E5FE136F859F02D7296D5669AF8DE8 /* UIImage+ForceDecode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+ForceDecode.h"; path = "SDWebImage/Core/UIImage+ForceDecode.h"; sourceTree = "<group>"; };
 		3698C015689C4B7F99DDFEF3EE6ED280 /* NSButton+WebCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSButton+WebCache.m"; path = "SDWebImage/Core/NSButton+WebCache.m"; sourceTree = "<group>"; };
 		37D400E599F1166DD29E27D3312CEA3A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		3A99D938567E50EBBF143082B96F73C5 /* Pods-The Games (iOS) */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-The Games (iOS)"; path = Pods_The_Games__iOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A99D938567E50EBBF143082B96F73C5 /* Pods_The_Games__iOS_.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_The_Games__iOS_.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BB60844036841E791ED7140548941E8 /* SDWebImageSwiftUI-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "SDWebImageSwiftUI-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		3BC21835E7DA195A977E272C28523E69 /* SDWebImageSwiftUI-iOS-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SDWebImageSwiftUI-iOS-prefix.pch"; sourceTree = "<group>"; };
 		3C26BD374937517735D7D11ACBA5370A /* UIImage+Metadata.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Metadata.m"; path = "SDWebImage/Core/UIImage+Metadata.m"; sourceTree = "<group>"; };
@@ -737,7 +737,7 @@
 		D3F2A96700641CE1DC2CE9D3A1F6A4E5 /* OperationQueue+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "OperationQueue+Alamofire.swift"; path = "Source/OperationQueue+Alamofire.swift"; sourceTree = "<group>"; };
 		D5B1EB7D1D3DFFFAF7BFBFF5299BDADC /* SDWebImage-macOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "SDWebImage-macOS.release.xcconfig"; path = "../SDWebImage-macOS/SDWebImage-macOS.release.xcconfig"; sourceTree = "<group>"; };
 		D5C783806B65682F1A00EDABD21B5D98 /* URLEncodedFormEncoder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = URLEncodedFormEncoder.swift; path = Source/URLEncodedFormEncoder.swift; sourceTree = "<group>"; };
-		D70ADC50BBABECC97AA36A0F2EF6AC8C /* SDWebImageSwiftUI-iOS */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "SDWebImageSwiftUI-iOS"; path = SDWebImageSwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D70ADC50BBABECC97AA36A0F2EF6AC8C /* SDWebImageSwiftUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDWebImageSwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8457AF18115D1631426A4B425AE3BB9 /* Pods-The Games (iOS)-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-The Games (iOS)-acknowledgements.markdown"; sourceTree = "<group>"; };
 		D86015F3A98325EFC7956C6DF7CE35A9 /* Pods-The Games (macOS)-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-The Games (macOS)-acknowledgements.markdown"; sourceTree = "<group>"; };
 		D87DEE15AA6C47505A0D3E7D81E55EC1 /* ActivityIndicator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ActivityIndicator.swift; path = SDWebImageSwiftUI/Classes/Indicator/ActivityIndicator.swift; sourceTree = "<group>"; };
@@ -1118,11 +1118,11 @@
 			children = (
 				966AA42878212207687E9A2A4DBCD618 /* Alamofire.framework */,
 				0CCE9CB82B4F89C8E07ADCACFD3DB134 /* Alamofire.framework */,
-				3A99D938567E50EBBF143082B96F73C5 /* Pods-The Games (iOS) */,
+				3A99D938567E50EBBF143082B96F73C5 /* Pods_The_Games__iOS_.framework */,
 				5808AAA29FCA28E8BA1B8CBF14DA8A25 /* Pods_The_Games__macOS_.framework */,
 				CFF06E53BC38C0114EDAF51F6C433D9F /* SDWebImage.framework */,
 				6A12DF4CC4A2B6CDB3B209E76B86EA58 /* SDWebImage.framework */,
-				D70ADC50BBABECC97AA36A0F2EF6AC8C /* SDWebImageSwiftUI-iOS */,
+				D70ADC50BBABECC97AA36A0F2EF6AC8C /* SDWebImageSwiftUI.framework */,
 				15463535A1871508D2DC3BB660831025 /* SDWebImageSwiftUI.framework */,
 			);
 			name = Products;
@@ -1544,7 +1544,7 @@
 			);
 			name = "SDWebImageSwiftUI-iOS";
 			productName = SDWebImageSwiftUI;
-			productReference = D70ADC50BBABECC97AA36A0F2EF6AC8C /* SDWebImageSwiftUI-iOS */;
+			productReference = D70ADC50BBABECC97AA36A0F2EF6AC8C /* SDWebImageSwiftUI.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		B562F29672425FE9F7B45B258D5F467F /* Pods-The Games (macOS) */ = {
@@ -1588,7 +1588,7 @@
 			);
 			name = "Pods-The Games (iOS)";
 			productName = Pods_The_Games__iOS_;
-			productReference = 3A99D938567E50EBBF143082B96F73C5 /* Pods-The Games (iOS) */;
+			productReference = 3A99D938567E50EBBF143082B96F73C5 /* Pods_The_Games__iOS_.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		C4D6105FB852D4B2686632A45857ED9F /* SDWebImageSwiftUI-macOS */ = {
