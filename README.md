@@ -2,7 +2,7 @@
 
 Assumption :
 * Tester have installed cocoapods and do ```pod install``` before running the project
-* Tester have installed SPM before running the proeject
+* Tester have installed SPM before running the project
 * Open ```The Games.xcworkspace``` to run the project
 * Create in Xcode 13.1 and use iOS 15.0 as deployment
 * Tested using iPhone 11 simulator and iPhone Xr real device
