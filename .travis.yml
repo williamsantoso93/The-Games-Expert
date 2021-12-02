@@ -2,3 +2,8 @@ language: ruby
 rvm:
  - 2.2
  - jruby
+language: swift
+osx_image: xcode13.1 
+xcode_project: The Games.xcworkspace 
+xcode_scheme: The Games (iOS)
+xcode_destination: platform=iOS Simulator,OS=14.0,name=iPhone 11 Pro
