@@ -47,6 +47,7 @@
 		7A88F5A426C96765007A46B6 /* DetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A88F5A226C96765007A46B6 /* DetailScreen.swift */; };
 		7A88F5A626C96F7B007A46B6 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A88F5A526C96F7B007A46B6 /* DetailViewModel.swift */; };
 		7A88F5A726C96F7B007A46B6 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A88F5A526C96F7B007A46B6 /* DetailViewModel.swift */; };
+		7AB9768D2759117F00E6FFF5 /* .travis.yml in Resources */ = {isa = PBXBuildFile; fileRef = 7AB9768C2759117F00E6FFF5 /* .travis.yml */; };
 		7AD6814626CA971F007746B4 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7AD6814526CA971F007746B4 /* README.md */; };
 		7AF80A5E26D3D17600ECABEF /* RequestAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF80A5D26D3D17600ECABEF /* RequestAccess.swift */; };
 		7AF80A5F26D3D17600ECABEF /* RequestAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF80A5D26D3D17600ECABEF /* RequestAccess.swift */; };
@@ -109,6 +110,7 @@
 		7A88F59F26C96433007A46B6 /* ProfileScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreen.swift; sourceTree = "<group>"; };
 		7A88F5A226C96765007A46B6 /* DetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailScreen.swift; sourceTree = "<group>"; };
 		7A88F5A526C96F7B007A46B6 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		7AB9768C2759117F00E6FFF5 /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .travis.yml; sourceTree = "<group>"; };
 		7AD6814526CA971F007746B4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		7AF80A5D26D3D17600ECABEF /* RequestAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestAccess.swift; sourceTree = "<group>"; };
 		7AF80A6026D3D1CE00ECABEF /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 		7A7CAE4926C41DA70021A438 = {
 			isa = PBXGroup;
 			children = (
+				7AB9768C2759117F00E6FFF5 /* .travis.yml */,
 				7AD6814526CA971F007746B4 /* README.md */,
 				7A7CAE4E26C41DA70021A438 /* Shared */,
 				7A7CAE5826C41DA90021A438 /* iOS */,
@@ -529,6 +532,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7AB9768D2759117F00E6FFF5 /* .travis.yml in Resources */,
 				7AD6814626CA971F007746B4 /* README.md in Resources */,
 				7A7CAE7C26C41DA90021A438 /* Assets.xcassets in Resources */,
 			);
