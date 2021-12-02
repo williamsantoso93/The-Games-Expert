@@ -1,7 +1,3 @@
-language: ruby
-rvm:
- - 2.2
- - jruby
 language: swift
 osx_image: xcode13.1 
 xcode_project: The Games.xcworkspace 
