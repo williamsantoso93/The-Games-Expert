@@ -13,6 +13,7 @@ Assumption :
 * Use realm for favorite
 * Use Combine as Reactive Programming
 * Use manual injection as Dependency Injection
+* Add Unit Test & CI
 
 
 Used third party library (cocoapods) :
